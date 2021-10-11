@@ -1,0 +1,42 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/amrutprabhu/spring-boot-external-configuration-options
+#          uri: file:///home/user/projects/spring-cloud-config-workout/
+          repos:
+
+            staging-properties-repo:
+              pattern : config-client/staging
+              uri: https://github.com/amrutprabhu/spring-boot-external-configuration-options
+              search-paths:
+                - spring-cloud-config-server-setup/configs-location
+
+            prod-properies-repo:
+              uri: https://github.com/amrutprabhu/spring-boot-external-configuration-options
+              pattern: config-client/prod
+              search-paths:
+                - spring-cloud-config-server-setup/configs-location/{profile}
+
+            any-request-repo:
+              uri: https://github.com/amrutprabhu/spring-boot-external-configuration-options
+              pattern: config-client*/*
+              search-paths:
+                - spring-cloud-config-server-setup/configs-location/{application}/{profile}
+
+#
+#            prod-properies-repo:
+#                uri: file:///home/user/projects/spring-cloud-config-workout
+#                pattern: config-client/prod
+#                search-paths:
+#                  - spring-cloud-config-server-setup/configs-location/{profile}
+#
+#            any-request-repo:
+#              uri: file:///home/user/projects/spring-cloud-config-workout
+#              pattern: config-client*/*
+#              search-paths:
+#                - spring-cloud-config-server-setup/configs-location/{application}/{profile}
